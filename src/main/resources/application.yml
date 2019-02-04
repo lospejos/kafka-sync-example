@@ -1,5 +1,8 @@
-spring:
+server:
+  servlet:
+    context-path: /api
 
+spring:
   kafka:
     bootstrap-servers: localhost:9092
     producer:
@@ -10,3 +13,14 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.value.default.type: com.neetkee.example.event.PersonChecked
+
+app:
+  kafka:
+    topic:
+      request: Person.Check.Initiated
+      reply: Person.Checked
+    polling:
+      timeout-seconds: 7
+      period-seconds: 1
+      initial-delay-seconds: 1
+      cancel-delay-seconds: 5
